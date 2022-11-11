@@ -30,8 +30,16 @@ RSpec.describe ShiftGenerator do
   describe '#key_to_shifts' do
     it 'transforms the key into 4 separate values for the shift' do
       shift1 = ShiftGenerator.new('12345', '010122')
-      shift1.key_to_shifts
+      shift2 = ShiftGenerator.new('67899', '020222')
       expect(shift1.key_to_shifts).to eq [12, 23, 34, 45]
+      expect(shift2.key_to_shifts).to eq [67, 78, 89, 99]
+    end
+  end
+
+  describe '#date_to_offset' do
+    it 'transforms a date string to an array of offsets' do
+      shift1 = ShiftGenerator.new('12345', '010122')
+      expect(shift1.date_to_offset).to eq([4, 8, 8, 4])
     end
   end
 end
