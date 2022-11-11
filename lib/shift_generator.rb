@@ -27,4 +27,8 @@ class ShiftGenerator
     last_4_digits = (@date.to_i**2).to_s.slice(-4..-1)
     last_4_digits.chars.map{ |offset| offset.to_i }
   end
+
+  def shifts
+    date_to_offset.zip(key_to_shifts).map(&:sum)
+  end
 end
