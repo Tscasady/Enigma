@@ -26,4 +26,12 @@ RSpec.describe ShiftGenerator do
       expect(key2.length).to eq 5
     end
   end
+
+  describe '#key_to_shifts' do
+    it 'transforms the key into 4 separate values for the shift' do
+      shift1 = ShiftGenerator.new('12345', '010122')
+      shift1.key_to_shifts
+      expect(shift1.key_to_shifts).to eq [12, 23, 34, 45]
+    end
+  end
 end
