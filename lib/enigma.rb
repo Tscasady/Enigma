@@ -8,8 +8,12 @@ class Enigma
     @character_set = ('a'..'z').to_a << ' '
   end
 
-  def encrypt(message, key, date)
+  def encrypt(message, key, date = Time.now)
     shifts = ShiftGenerator.new(key, date).shifts
+    { encryption: encrypt_message(message, shifts), key: key, date: date }
+  end
+
+  def encrypt_message(message, shifts)
     shift_count = 0
     message.chars.map do |character|
       current_character = @character_set.find_index(character)

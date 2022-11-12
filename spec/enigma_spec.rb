@@ -4,9 +4,9 @@ require './lib/enigma'
 require './lib/shift_generator'
 
 RSpec.describe Enigma do
+  let(:enigma) { Enigma.new }
   describe '#initialize' do
     it 'exists and has a character_set' do
-      enigma = Enigma.new
       expect(enigma).to be_a Enigma
       expect(enigma.character_set.length).to eq 27
     end
@@ -14,7 +14,6 @@ RSpec.describe Enigma do
 
   describe '#encrypt' do
     it 'returns a hash containing an encrypted message, key, and date' do
-      enigma = Enigma.new
       expect(enigma.encrypt('test', '12345', '010122')).to eq({
                                                                 encryption: 'iigo',
                                                                 key: '12345',
