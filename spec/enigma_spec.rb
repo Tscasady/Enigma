@@ -27,6 +27,21 @@ RSpec.describe Enigma do
     end
   end
 
+  describe '#decrypt' do
+  it 'decrypts a message' do
+    expect(enigma.encrypt('iigo', '12345', '010122')).to eq({
+                                                              encryption: 'test',
+                                                              key: '12345',
+                                                              date: '010122'
+                                                            })
+    expect(enigma.decrypt('keder ohulw', '02715', '040895')).to eq({
+                                                                     decryption: 'hello world',
+                                                                     key: '02715',
+                                                                     date: '040895'
+    })
+  end
+end
+
   describe '#encrypt_message' do
     it 'encrypts a message' do
       shifts = ShiftGenerator.new('12345', '010122').shifts
