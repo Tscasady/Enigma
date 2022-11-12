@@ -49,7 +49,7 @@ RSpec.describe ShiftGenerator do
     it 'adds key_shifts and offsets to produce final shifts' do
       shift1 = ShiftGenerator.new('12345', '010122')
       shift2 = ShiftGenerator.new('67899', '020222')
-      expect(shift1.shifts).to eq ([16, 31, 42, 49])
+      expect(shift1.shifts).to eq([16, 31, 42, 49])
       expect(shift2.shifts).to eq([76, 80, 97, 103])
     end
   end
