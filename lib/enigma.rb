@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'time'
+require './lib/shift_generator'
 # This class encrypts messages
 class Enigma
   attr_reader :character_set
@@ -10,6 +12,10 @@ class Enigma
 
   def generate_key
     5.times.map { rand(10) }.join
+  end
+
+  def date_to_string(date = Time.now)
+    date.strftime('%d%m%y')
   end
 
   def encrypt(message, key = generate_key, date = Time.now)
