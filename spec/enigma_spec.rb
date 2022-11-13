@@ -66,16 +66,16 @@ RSpec.describe Enigma do
   describe '#encrypt_message' do
     it 'encrypts a message' do
       shifts = ShiftGenerator.new('12345', '010122').shifts
-      expect(enigma.encrypt_message('test', shifts)).to eq 'iigo'
+      expect(enigma.encrypt_message('tESt', shifts)).to eq 'iigo'
       shifts = ShiftGenerator.new('02715', '040895').shifts
-      expect(enigma.encrypt_message('hello world', shifts)).to eq 'keder ohulw'
+      expect(enigma.encrypt_message('hELlo worLD', shifts)).to eq 'keder ohulw'
     end
   end
 
   describe '#decrypt_message' do
     it 'decrypts a message' do
       shifts = ShiftGenerator.new('12345', '010122').shifts
-      expect(enigma.decrypt_message('iigo', shifts)).to eq 'test'
+      expect(enigma.decrypt_message('IIgo', shifts)).to eq 'test'
     end
   end
 end
