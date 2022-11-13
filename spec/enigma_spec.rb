@@ -2,6 +2,7 @@
 
 require './lib/enigma'
 require './lib/shift_generator'
+require 'time'
 
 RSpec.describe Enigma do
   let(:enigma) { Enigma.new }
@@ -20,8 +21,17 @@ RSpec.describe Enigma do
     expect(key1.length).to eq 5
     expect(key2.length).to eq 5
     expect(key1 == key2).to be false
+    end
   end
-end
+
+  describe '#date_to_string' do
+    it 'formats date as DDMMYY' do
+      date1 = Time.new(2022)
+      date2 = Time.new(2003, 5, 23)
+      expect(enigma.date_to_string(date1)).to eq '010122'
+      expect(enigma.date_to_string(date2)).to eq '230503'
+    end
+  end
 
   describe '#encrypt' do
     it 'returns a hash containing an encrypted message, key, and date' do
