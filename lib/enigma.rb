@@ -34,7 +34,7 @@ class Enigma
 
   def encrypt_message(message, shifts)
     shift_count = 0
-    message.chars.map do |character|
+    message.downcase.chars.map do |character|
       current_character = @character_set.find_index(character)
       new_character = (current_character + shifts[shift_count % 4]) % 27
       shift_count += 1
@@ -44,7 +44,7 @@ class Enigma
 
   def decrypt_message(message, shifts)
     shift_count = 0
-    message.chars.map do |character|
+    message.downcase.chars.map do |character|
       current_character = @character_set.find_index(character)
       new_character = (current_character - shifts[shift_count % 4]) % 27
       shift_count += 1
