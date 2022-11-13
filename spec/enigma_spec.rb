@@ -28,17 +28,18 @@ RSpec.describe Enigma do
   end
 
   describe '#decrypt' do
-  it 'decrypts a message' do
-    expect(enigma.encrypt('iigo', '12345', '010122')).to eq({
-                                                              encryption: 'test',
-                                                              key: '12345',
-                                                              date: '010122'
-                                                            })
-    expect(enigma.decrypt('keder ohulw', '02715', '040895')).to eq({
-                                                                     decryption: 'hello world',
-                                                                     key: '02715',
-                                                                     date: '040895'
-    })
+    it 'decrypts a message' do
+      expect(enigma.decrypt('iigo', '12345', '010122')).to eq({
+                                                                decryption: 'test',
+                                                                key: '12345',
+                                                                date: '010122'
+                                                              })
+      expect(enigma.decrypt('keder ohulw', '02715', '040895')).to eq({
+                                                                       decryption: 'hello world',
+                                                                       key: '02715',
+                                                                       date: '040895'
+      })
+    end
   end
 end
 
