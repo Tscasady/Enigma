@@ -12,6 +12,17 @@ RSpec.describe Enigma do
     end
   end
 
+  describe '#generate_key' do
+  it 'creates a random number 5 digit number as a string to use as a key' do
+    key1 = enigma.generate_key
+    key2 = enigma.generate_key
+    expect(key1).to be_a String
+    expect(key1.length).to eq 5
+    expect(key2.length).to eq 5
+    expect(key1 == key2).to be false
+  end
+end
+
   describe '#encrypt' do
     it 'returns a hash containing an encrypted message, key, and date' do
       expect(enigma.encrypt('test', '12345', '010122')).to eq({
@@ -46,15 +57,15 @@ RSpec.describe Enigma do
     it 'encrypts a message' do
       shifts = ShiftGenerator.new('12345', '010122').shifts
       expect(enigma.encrypt_message('test', shifts)).to eq 'iigo'
-      shifts = ShiftGenerator.new('02715', '040895')
-      expect(enigma.enrypt_mesage('hello world', shifts)).to eq 'keder ohulw'
+      shifts = ShiftGenerator.new('02715', '040895').shifts
+      expect(enigma.encrypt_message('hello world', shifts)).to eq 'keder ohulw'
     end
   end
 
   describe '#decrypt_message' do
     it 'decrypts a message' do
       shifts = ShiftGenerator.new('12345', '010122').shifts
-      expect(enigma.decrypt_mesage('iigo', shifts)).to eq 'test'
+      expect(enigma.decrypt_message('iigo', shifts)).to eq 'test'
     end
   end
 end

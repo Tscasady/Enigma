@@ -8,7 +8,11 @@ class Enigma
     @character_set = ('a'..'z').to_a << ' '
   end
 
-  def encrypt(message, key, date = Time.now)
+  def generate_key
+    5.times.map { rand(10) }.join
+  end
+
+  def encrypt(message, key = generate_key, date = Time.now)
     shifts = ShiftGenerator.new(key, date).shifts
     { encryption: encrypt_message(message, shifts), key: key, date: date }
   end
