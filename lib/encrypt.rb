@@ -9,5 +9,6 @@ key = ARGV[2] if !(ARGV[2].nil?)
 date = ARGV[3] if !(ARGV[3].nil?)
 
 enigma = Enigma.new
-enigma.encrypt(File.read(input))
+encrypted = enigma.encrypt(File.read(input))
+output.write("#{encrypted[:encryption]}")
 puts "Created #{output} with the key #{key} and date #{date}"
