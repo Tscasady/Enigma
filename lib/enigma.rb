@@ -15,6 +15,8 @@ class Enigma
   end
 
   def date_to_string(date)
+    return date if date.is_a? String
+
     date.strftime('%d%m%y')
   end
 
