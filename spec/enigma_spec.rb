@@ -14,13 +14,13 @@ RSpec.describe Enigma do
   end
 
   describe '#generate_key' do
-  it 'creates a random number 5 digit number as a string to use as a key' do
-    key1 = enigma.generate_key
-    key2 = enigma.generate_key
-    expect(key1).to be_a String
-    expect(key1.length).to eq 5
-    expect(key2.length).to eq 5
-    expect(key1 == key2).to be false
+    it 'creates a random number 5 digit number as a string to use as a key' do
+      key1 = enigma.generate_key
+      key2 = enigma.generate_key
+      expect(key1).to be_a String
+      expect(key1.length).to eq 5
+      expect(key2.length).to eq 5
+      expect(key1 == key2).to be false
     end
   end
 
