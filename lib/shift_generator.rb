@@ -9,10 +9,6 @@ class ShiftGenerator
     @date = date
   end
 
-  def generate_key
-    5.times.map { rand(10) }.join
-  end
-
   def key_to_shifts
     shifts = []
     count = 0
