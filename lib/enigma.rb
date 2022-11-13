@@ -14,16 +14,18 @@ class Enigma
     5.times.map { rand(10) }.join
   end
 
-  def date_to_string(date = Time.now)
+  def date_to_string(date)
     date.strftime('%d%m%y')
   end
 
   def encrypt(message, key = generate_key, date = Time.now)
+    date = date_to_string(date)
     shifts = ShiftGenerator.new(key, date).shifts
     { encryption: encrypt_message(message, shifts), key: key, date: date }
   end
 
   def decrypt(message, key, date = Time.now)
+    date = date_to_string(date)
     shifts = ShiftGenerator.new(key, date).shifts
     { decryption: decrypt_message(message, shifts), key: key, date: date }
   end
