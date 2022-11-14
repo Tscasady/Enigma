@@ -11,4 +11,4 @@ date = ARGV[3] if !(ARGV[3].nil?)
 enigma = Enigma.new
 encrypted = enigma.encrypt(File.read(input))
 output.write("#{encrypted[:encryption]}")
-puts "Created #{output} with the key #{key} and date #{date}"
+puts "Created #{ARGV[1]} with the key #{encrypted[:key]} and date #{encrypted[:date]}"
