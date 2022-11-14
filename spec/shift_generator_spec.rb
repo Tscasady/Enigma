@@ -16,17 +16,6 @@ RSpec.describe ShiftGenerator do
     end
   end
 
-  describe '#generate_key' do
-    it 'creates a random number 5 digit number as a string to use as a key' do
-      shift = ShiftGenerator.new('010122')
-      key1 = shift.key
-      key2 = shift.generate_key
-      expect(key1).to be_a String
-      expect(key1.length).to eq 5
-      expect(key2.length).to eq 5
-    end
-  end
-
   describe '#key_to_shifts' do
     it 'transforms the key into 4 separate values for the shift' do
       shift1 = ShiftGenerator.new('12345', '010122')
