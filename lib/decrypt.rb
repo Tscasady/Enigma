@@ -8,6 +8,6 @@ key = ARGV[2] if !(ARGV[2].nil?)
 date = ARGV[3] if !(ARGV[3].nil?)
 
 enigma = Enigma.new
-encrypted = enigma.decrypt(File.read(input), key, date)
-output.write("#{encrypted[:decryption]}")
+decrypted = enigma.decrypt(File.read(input), key, date)
+output.write("#{decrypted[:decryption]}")
 puts "Created #{ARGV[1]} with the key #{decrypted[:key]} and date #{decrypted[:date]}"
