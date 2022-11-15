@@ -40,14 +40,4 @@ class ShiftGenerator
   def keys
     @cipher.keys
   end
-
-  # def get_shift(key)
-  #   if @prefix == 'en' && key.nil?
-  #     @key = generate_key
-  #   elsif key.nil?
-  #     @key = @target_indicies.order
-  #   else
-  #     key
-  #   end
-  # end
 end
