@@ -3,7 +3,7 @@ require './lib/offset_gen'
 require './lib/shift_generator'
 class Cipher
 
-  attr_reader :keys
+  attr_reader :keys, :message, :character_set
   #this should be able to be given 2/3 of skd, and return everything
   def initialize(message, key, date, prefix)
     @message = message
@@ -33,5 +33,13 @@ class Cipher
 
   def get_offset
     @offset.date_to_offset
+  end
+
+  def ordered_offset
+    @offset.date_to_offset.rotate(shift_order)
+  end
+
+  def crack_shift
+    @shifts.crack_shift
   end
 end
