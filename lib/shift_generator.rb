@@ -1,12 +1,18 @@
 # frozen_string_literal: true
 
-# This class generates shifts for encrypting.
-class ShiftGenerator
-  attr_reader :key, :date
+# This class generates shifts for transforming messages.
+require './lib/key_gen'
+require './lib/offset_gen'
+#if no key, give shift orderer
+#if no key and prefix == 'en' generate random key
+class ShiftGenerator 
+  attr_reader :key, :offset, :shift_order
 
-  def initialize(key, date)
-    @key = key
-    @date = date
+  def initialize(key, date, shift_order)
+    @key = KeyGen.new(key).key
+    @offset = OffsetGen.new(date)
+    @target_indicies = [27, 4, 13, 3]
+    @shift_order = shift_order
   end
 
   def key_to_shifts
