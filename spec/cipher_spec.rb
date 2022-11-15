@@ -6,8 +6,8 @@ RSpec.describe Cipher do
       cipher1 = Cipher.new('test', '12345', '010122', 'en')
       cipher2 = Cipher.new('keder ohulw', '02715', '040895', 'de')
       expect(cipher1).to be_a Cipher
-      expect(cipher1.shifts[0]).to eq 'a'
-      expect(cipher2.shifts[0]).to eq 'a'
+      expect(cipher1.keys).to eq '12345'
+      expect(cipher2.keys).to eq '02715'
     end
   end
 
@@ -28,12 +28,38 @@ RSpec.describe Cipher do
     end
   end
 
+  describe '#output' do
+    it 'returns message and data in a hash' do
+      cipher1 = Cipher.new('test', '12345', '010122', 'en')
+      cipher2 = Cipher.new('keder ohulw', '02715', '040895', 'de')
+      expect(cipher1.output).to eq({
+        encryption: 'iigo',
+        key: '12345',
+        date: '010122'
+      })
+      expect(cipher2.transform_message).to eq({
+        decryption: 'hello world',
+        key: '02715',
+        date: '040895'
+      })
+    end
+  end
+
   describe '#shift_order' do
     it 'returns a number between 0-3 based on message length' do
       cipher1 = Cipher.new('test', '12345', '010122', 'en')
       expect(cipher1.shift_order).to eq 0
       cipher2 = Cipher.new('keder ohulw', '02715', '040895', 'de')
       expect(cipher2.shift_order).to eq 3
+    end
+  end
+
+  describe '#get_offset' do
+    it 'returns an array of offsets' do
+      cipher1 = Cipher.new('test', '12345', '010122', 'en')
+      expect(cipher1.get_offset).to eq [4, 8, 8, 4]
+      cipher2 = Cipher.new('keder ohulw', '02715', '040895', 'de')
+      expect(cipher2.get_offset).to eq [1, 0, 2, 5]
     end
   end
 end
