@@ -1,15 +1,19 @@
-require './lib/defaults'
-
+require './lib/key_gen'
+require './lib/offset_gen'
+require './lib/shift_generator'
 class Cipher
-  include Defaults
-  attr_reader 
 
+  attr_reader :keys
+  #this should be able to be given 2/3 of skd, and return everything
   def initialize(message, key, date, prefix)
     @message = message
     @prefix = prefix
     @operator = @prefix == 'en' ? '+' : '-'
     @character_set = ('a'..'z').to_a << ' '
-    @shifts = ShiftGenerator.new(key, date).shifts
+    @shifts = ShiftGenerator.new(shift_order, self)
+    @keys = KeyGen.new(self, key).key
+    @offset = OffsetGen.new(self, date)
+    @date = @offset.date
   end
 
   def transform_message
