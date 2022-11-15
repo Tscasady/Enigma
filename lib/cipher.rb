@@ -17,10 +17,21 @@ class Cipher
   end
 
   def transform_message
-    result = message.downcase.chars.map.with_index do |character, index|
+    @message.downcase.chars.map.with_index do |character, index|
       current = @character_set.find_index(character)
-      @character_set[(current.send(operator, shifts[index % 4])) % 27]
+      @character_set[(current.send(@operator, @shifts.shifts[index % 4])) % 27]
     end.join
-    {"#{prefix}cryption": result, key: key, date: date }
+  end
+
+  def output
+    { "#{@prefix}cryption": transform_message, key: @keys, date: @date }
+  end
+
+  def shift_order
+    @message.length % 4
+  end
+
+  def get_offset
+    @offset.date_to_offset
   end
 end
