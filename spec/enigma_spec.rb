@@ -9,7 +9,6 @@ RSpec.describe Enigma do
   describe '#initialize' do
     it 'exists and has a character_set' do
       expect(enigma).to be_a Enigma
-      expect(enigma.character_set.length).to eq 27
     end
   end
 
@@ -40,6 +39,12 @@ RSpec.describe Enigma do
                                                                        key: '02715',
                                                                        date: '040895'
                                                                      })
+    end
+  end
+
+  describe '#crack' do
+    it 'returns a hash containt a message, key, and date' do
+
     end
   end
 end
