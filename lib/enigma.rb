@@ -6,18 +6,14 @@ require './lib/shift_generator'
 class Enigma
   attr_reader :character_set
 
-  def initialize
-    @cipher = Cipher.new
+  def encrypt(message, key, date)
+    prefix = __method__.to_s[0..2]
+    Cipher.new(message, key, date, prefix).transform_message
   end
 
-  def encrypt(message, key = generate_key, date = Time.now)
+  def decrypt(message, key, date)
     prefix = __method__.to_s[0..2]
-    cipher.transform_message(message, key, date, prefix, '+')
-  end
-
-  def decrypt(message, key = generate_key, date = Time.now)
-    prefix = __method__.to_s[0..2]
-    cipher.transform_message(message, key, date, prefix, '-')
+    Cipher.new(message, key, date, prefix).transform_message
   end
 
   def crack(message, date = Time.now)
