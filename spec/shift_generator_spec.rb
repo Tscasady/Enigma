@@ -10,11 +10,7 @@ RSpec.describe ShiftGenerator do
       shift1 = ShiftGenerator.new(3, cipher)
       shift2 = ShiftGenerator.new(2, cipher)
       expect(shift1).to be_a ShiftGenerator
-      expect(shift1.key).to eq '12345'
-      expect(shift1.offset.date).to eq '010122'
       expect(shift1.shift_order).to eq 3
-      expect(shift2.key).to eq '67899'
-      expect(shift2.offset.date).to eq '020222'
       expect(shift2.shift_order).to eq 2
     end
   end
