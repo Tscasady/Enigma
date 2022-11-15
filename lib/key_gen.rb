@@ -10,6 +10,10 @@ class KeyGen
     rand.to_s[2..6]
   end
 
+  def fetch_date
+    @cipher.date
+  end
+
   def find_key(message, shift, date)
     d = date_to_offset(date).order
     shift_order = @target_indicies.order

@@ -31,4 +31,13 @@ RSpec.describe KeyGen do
       
     end
   end
+
+  describe '#fetch_date' do
+    it 'retrieves the date from the cipher' do
+      cipher = double('cipher')
+      allow(cipher).to receive(:date).and_return '151122'
+      keygen = KeyGen.new(cipher)
+      expect(keygen.fetch_date).to eq '151122'
+    end
+  end
 end
