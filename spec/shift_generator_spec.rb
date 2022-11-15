@@ -48,4 +48,13 @@ RSpec.describe ShiftGenerator do
       expect(shift2.crack_shift).to eq [13, 3, 27, 4]
     end
   end
+
+  describe '#offsets' do
+    it 'fetches offsets from the cipher' do
+      cipher = double('cipher')
+      allow(cipher).to receive(:get_offset).and_return([4, 8, 8, 4])
+      shift1 = ShiftGenerator.new(2, cipher)
+      expect(shift1.offsets).to eq [4, 8, 8, 4]
+    end
+  end
 end
