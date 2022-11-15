@@ -57,6 +57,8 @@ RSpec.describe Cipher do
 
   describe '#ordered_offset' do
     it 'returns the shifted offset for crack calculations' do
+      cipher1 = Cipher.new('test', '12345', '010122', 'en')
+      expect(cipher1.ordered_offset).to eq [4, 8, 8, 4]
       cipher2 = Cipher.new('keder ohulw', '02715', '040895', 'de')
       expect(cipher2.ordered_offset).to eq [5, 1, 0, 2]
     end
@@ -64,7 +66,10 @@ RSpec.describe Cipher do
 
   describe '#crack_shift' do
     it 'fetches the crack_shift from the shift gen' do
-      
+      cipher1 = Cipher.new('test', '12345', '010122', 'en')
+      expect(cipher1.crack_shift).to eq [27, 4, 13, 3]
+      cipher1 = Cipher.new('keder ohulw', '02715', '040895', 'de')
+      expect(cipher1.crack_shift).to eq [3, 27, 4, 13]
     end
   end
 end
