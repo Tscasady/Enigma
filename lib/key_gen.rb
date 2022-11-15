@@ -1,8 +1,9 @@
 class KeyGen
   attr_reader :key
 
-  def initialize(key = nil, date = nil)
+  def initialize(cipher, key = nil)
     @key = key ||= generate_key
+    @cipher = cipher
   end
 
   def generate_key
