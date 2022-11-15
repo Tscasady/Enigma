@@ -7,48 +7,20 @@ class Enigma
   attr_reader :character_set
 
   def initialize
-    @character_set = ('a'..'z').to_a << ' '
-  end
-
-  def generate_key
-    5.times.map { rand(10) }.join
-  end
-
-  def date_to_string(date)
-    return date if date.is_a? String
-
-    date.strftime('%d%m%y')
+    @cipher = Cipher.new
   end
 
   def encrypt(message, key = generate_key, date = Time.now)
-    date = date_to_string(date)
-    shifts = ShiftGenerator.new(key, date).shifts
-    { encryption: encrypt_message(message, shifts), key: key, date: date }
+    prefix = __method__.to_s[0..2]
+    cipher.transform_message(message, key, date, prefix, '+')
   end
 
-  def decrypt(message, key, date = Time.now)
-    date = date_to_string(date)
-    shifts = ShiftGenerator.new(key, date).shifts
-    { decryption: decrypt_message(message, shifts), key: key, date: date }
+  def decrypt(message, key = generate_key, date = Time.now)
+    prefix = __method__.to_s[0..2]
+    cipher.transform_message(message, key, date, prefix, '-')
   end
 
-  def encrypt_message(message, shifts)
-    shift_count = 0
-    message.downcase.chars.map do |character|
-      current_character = @character_set.find_index(character)
-      new_character = (current_character + shifts[shift_count % 4]) % 27
-      shift_count += 1
-      @character_set[new_character]
-    end.join
-  end
-
-  def decrypt_message(message, shifts)
-    shift_count = 0
-    message.downcase.chars.map do |character|
-      current_character = @character_set.find_index(character)
-      new_character = (current_character - shifts[shift_count % 4]) % 27
-      shift_count += 1
-      @character_set[new_character]
-    end.join
+  def crack(message, date = Time.now)
+    decrypt(message, date)
   end
 end
