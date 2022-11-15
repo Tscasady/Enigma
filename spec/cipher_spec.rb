@@ -29,7 +29,7 @@ RSpec.describe Cipher do
         key: '12345',
         date: '010122'
       })
-      expect(cipher2.transform_message).to eq({
+      expect(cipher2.output).to eq({
         decryption: 'hello world',
         key: '02715',
         date: '040895'

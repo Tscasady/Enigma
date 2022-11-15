@@ -17,7 +17,7 @@ class Enigma
     Cipher.new(message, key, date, prefix).output
   end
 
-  def crack(message, date = Time.now)
-    decrypt(message, date)
-  end
+  # def crack(message, date = Time.now)
+  #   decrypt(message, date)
+  # end
 end
