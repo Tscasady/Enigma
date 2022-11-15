@@ -23,7 +23,7 @@ class ShiftGenerator
     shifts = []
     count = 0
     4.times do
-      shifts << @key[count..count + 1].to_i
+      shifts << keys[count..count + 1].to_i
       count += 1
     end
     shifts
@@ -35,6 +35,10 @@ class ShiftGenerator
 
   def offsets
     @cipher.get_offset
+  end
+
+  def keys
+    @cipher.get_keys
   end
 
   # def get_shift(key)
