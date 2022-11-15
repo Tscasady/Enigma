@@ -8,12 +8,11 @@ require './lib/offset_gen'
 class ShiftGenerator 
   attr_reader :key, :offset, :shift_order
 
-  def initialize(key, date, shift_order)
-    @key = KeyGen.new(key).key
-    @offset = OffsetGen.new(date)
+  def initialize(shift_order, cipher)
     @target_indicies = [27, 4, 13, 3]
     @shift_order = shift_order
     @shifts = shifts
+    @cipher = cipher
   end
 
   def shifts
