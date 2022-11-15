@@ -11,12 +11,11 @@ class ShiftGenerator
   def initialize(shift_order, cipher)
     @target_indicies = [27, 4, 13, 3]
     @shift_order = shift_order
-    @shifts = shifts
     @cipher = cipher
   end
 
   def shifts
-    @offset.date_to_offset.zip(key_to_shift_part).map(&:sum)
+    offsets.zip(key_to_shift_part).map(&:sum)
     #{ |shift| shift.reduce(operator.to_sym) }
   end
 
@@ -32,6 +31,10 @@ class ShiftGenerator
 
   def crack_shift
     @target_indicies.rotate(@shift_order)
+  end
+
+  def offsets
+    @cipher.get_offset
   end
 
   # def get_shift(key)
