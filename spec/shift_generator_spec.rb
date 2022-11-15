@@ -6,13 +6,15 @@ RSpec.describe ShiftGenerator do
   # let(:shift) { ShiftGenerator.new('12345', '010122') }
   describe '#initialize' do
     it 'exists and has readable attributes' do
-      shift1 = ShiftGenerator.new('12345', '010122')
-      shift2 = ShiftGenerator.new('67899', '020222')
+      shift1 = ShiftGenerator.new('12345', '010122', 3)
+      shift2 = ShiftGenerator.new('67899', '020222', 2)
       expect(shift1).to be_a ShiftGenerator
       expect(shift1.key).to eq '12345'
-      expect(shift1.date).to eq '010122'
+      expect(shift1.offset.date).to eq '010122'
+      expect(shift1.shift_order).to eq 3
       expect(shift2.key).to eq '67899'
-      expect(shift2.date).to eq '020222'
+      expect(shift2.offset.date).to eq '020222'
+      expect(shift2.shift_order).to eq 2
     end
   end
 
