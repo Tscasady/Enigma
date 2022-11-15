@@ -16,7 +16,7 @@ class KeyGen
   end
 
   def crack_key_gen
-    find_shift_difference.zip(fetch_ordered_offset).map { |element| (element[0] - element[1]) % 27 }
+    find_shift_difference.zip(fetch_ordered_offset).map { |element| (element[0] - element[1]) % 27}
   end
 
   def fetch_crack_shift
@@ -28,4 +28,14 @@ class KeyGen
       @cipher.character_set.find_index(character) - fetch_crack_shift[index]
     end
   end
+
+  #   def get_shift(key)
+  #   if @prefix == 'en' && key.nil?
+  #     @key = generate_key
+  #   elsif key.nil?
+  #     @key = @target_indicies.order
+  #   else
+  #     key
+  #   end
+  # end
 end
