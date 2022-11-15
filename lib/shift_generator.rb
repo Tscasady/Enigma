@@ -13,9 +13,15 @@ class ShiftGenerator
     @offset = OffsetGen.new(date)
     @target_indicies = [27, 4, 13, 3]
     @shift_order = shift_order
+    @shifts = shifts
   end
 
-  def key_to_shifts
+  def shifts
+    @offset.date_to_offset.zip(key_to_shift_part).map(&:sum)
+    #{ |shift| shift.reduce(operator.to_sym) }
+  end
+
+  def key_to_shift_part
     shifts = []
     count = 0
     4.times do
