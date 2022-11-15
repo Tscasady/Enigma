@@ -4,8 +4,9 @@ require 'time'
 class OffsetGen
   attr_reader :date
 
-  def initialize(date = nil)
+  def initialize(cipher, date = nil)
     @date = date_to_string(date)
+    @cipher = cipher
   end
 
   def date_to_offset
