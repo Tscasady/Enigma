@@ -5,7 +5,7 @@ RSpec.describe DateGen do
   describe '#initialize' do
     it 'exists and has a readable attribute' do
       allow(Time).to receive(:now).and_return '010122'
-      dategen1 = DateGen.new()
+      dategen1 = DateGen.new(nil)
       expect(dategen1).to be_a DateGen
       expect(dategen1.date).to eq '010122'
     end
@@ -27,10 +27,14 @@ RSpec.describe DateGen do
       date3 = nil
       dategen1 = DateGen.new(date1)
       dategen2 = DateGen.new(date2)
+
+      allow(Time).to receive(:now).and_return '010122'
       dategen3 = DateGen.new(date3)
       dategen4 = DateGen.new()
       expect(dategen1.date).to eq '010122'
-      expect(date2.date_to_string(date2)).to eq '230503'
+      expect(dategen2.date).to eq '230503'
+      expect(dategen3.date).to eq '010122'
+      expect(dategen4.date).to eq '010122'
     end
   end
 end

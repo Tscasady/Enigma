@@ -4,7 +4,7 @@ require 'time'
 class DateGen
   attr_reader :date
 
-  def initialize(date)
+  def initialize(date = nil)
     @date = date_to_string(date)
   end
 
@@ -13,9 +13,9 @@ class DateGen
   end
 
   def date_to_string(date)
-    @date ||= Time.now
-    return @date if @date.is_a? String
+    date ||= Time.now
+    return date if date.is_a? String
 
-    @date.strftime('%d%m%y')
+    date.strftime('%d%m%y')
   end
 end
