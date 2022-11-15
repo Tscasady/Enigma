@@ -1,7 +1,7 @@
 
 require 'time'
 # Generates a date offset
-class DateGen
+class OffsetGen
   attr_reader :date
 
   def initialize(date = nil)
