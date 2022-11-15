@@ -15,16 +15,8 @@ RSpec.describe Cipher do
     it 'can transform a message with the given shift' do
       cipher1 = Cipher.new('test', '12345', '010122', 'en')
       cipher2 = Cipher.new('keder ohulw', '02715', '040895', 'de')
-      expect(cipher1.transform_message).to eq({
-        encryption: 'iigo',
-        key: '12345',
-        date: '010122'
-      })
-      expect(cipher2.transform_message).to eq({
-        decryption: 'hello world',
-        key: '02715',
-        date: '040895'
-      })
+      expect(cipher1.transform_message).to eq('iigo')
+      expect(cipher2.transform_message).to eq('hello world')
     end
   end
 
