@@ -38,7 +38,7 @@ class ShiftGenerator
   end
 
   def keys
-    @cipher.get_keys
+    @cipher.keys
   end
 
   # def get_shift(key)

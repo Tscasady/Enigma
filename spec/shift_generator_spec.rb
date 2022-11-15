@@ -17,9 +17,12 @@ RSpec.describe ShiftGenerator do
 
   describe '#key_to_shift_part' do
     it 'transforms the key into 4 separate values for the shift' do
-      cipher = double('cipher')
-      shift1 = ShiftGenerator.new(3, cipher)
-      shift2 = ShiftGenerator.new(2, cipher)
+      cipher1 = double('cipher')
+      allow(cipher1).to receive(:keys).and_return('12345')
+      cipher2 = double('cipher')
+      allow(cipher2).to receive(:keys).and_return('67899')
+      shift1 = ShiftGenerator.new(3, cipher1)
+      shift2 = ShiftGenerator.new(2, cipher2)
       expect(shift1.key_to_shift_part).to eq [12, 23, 34, 45]
       expect(shift2.key_to_shift_part).to eq [67, 78, 89, 99]
     end
@@ -29,8 +32,10 @@ RSpec.describe ShiftGenerator do
     it 'adds key_shifts and offsets to produce final shifts' do
       cipher1 = double('cipher')
       allow(cipher1).to receive(:get_offset).and_return([4, 8, 8, 4])
+      allow(cipher1).to receive(:keys).and_return('12345')
       cipher2 = double('cipher')
       allow(cipher2).to receive(:get_offset).and_return([9, 2, 8, 4])
+      allow(cipher2).to receive(:keys).and_return('67899')
       shift1 = ShiftGenerator.new(3, cipher1)
       shift2 = ShiftGenerator.new(2, cipher2)
       expect(shift1.shifts).to eq([16, 31, 42, 49])
@@ -60,7 +65,7 @@ RSpec.describe ShiftGenerator do
   describe '#keys' do
     it 'fetches keys from the cipher' do
       cipher = double('cipher')
-      allow(cipher).to receive(:get_keys).and_return('12345')
+      allow(cipher).to receive(:keys).and_return('12345')
       shift = ShiftGenerator.new(2, cipher)
       expect(shift.keys).to eq ('12345')
     end
