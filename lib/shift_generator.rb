@@ -31,12 +31,17 @@ class ShiftGenerator
     shifts
   end
 
-  def date_to_offset
-    last_4_digits = (@date.to_i**2).to_s.slice(-4..-1)
-    last_4_digits.chars.map(&:to_i)
+  def crack_shift
+    @target_indicies.rotate(@shift_order)
   end
 
-  def shifts
-    date_to_offset.zip(key_to_shifts).map(&:sum)
-  end
+  # def get_shift(key)
+  #   if @prefix == 'en' && key.nil?
+  #     @key = generate_key
+  #   elsif key.nil?
+  #     @key = @target_indicies.order
+  #   else
+  #     key
+  #   end
+  # end
 end
