@@ -40,4 +40,13 @@ RSpec.describe KeyGen do
       expect(keygen.fetch_date).to eq '151122'
     end
   end
+
+  describe '#fetch_crack_shift' do
+    it 'retrieves crack_shift from cipher' do
+      cipher = double('cipher')
+      allow(cipher).to receive(:crack_shift).and_return [27, 4, 13, 3]
+      keygen = KeyGen.new(cipher)
+      expect(keygen.fetch_crack_shift).to eq [27, 4, 13, 3]
+    end
+  end
 end

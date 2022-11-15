@@ -3,6 +3,7 @@ class KeyGen
 
   def initialize(cipher, key = nil)
     @key = key ||= generate_key
+    @target_indicies = [27, 4, 13, 3]
     @cipher = cipher
   end
 
@@ -12,6 +13,10 @@ class KeyGen
 
   def fetch_date
     @cipher.date
+  end
+
+  def fetch_crack_shift
+    @cipher.crack_shift
   end
 
   def find_key(message, shift, date)
