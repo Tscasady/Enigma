@@ -27,4 +27,13 @@ RSpec.describe Cipher do
       })
     end
   end
+
+  describe '#shift_order' do
+    it 'returns a number between 0-3 based on message length' do
+      cipher1 = Cipher.new('test', '12345', '010122', 'en')
+      expect(cipher1.shift_order).to eq 0
+      cipher2 = Cipher.new('keder ohulw', '02715', '040895', 'de')
+      expect(cipher2.shift_order).to eq 3
+    end
+  end
 end
