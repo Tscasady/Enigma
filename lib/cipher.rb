@@ -19,7 +19,11 @@ class Cipher
   def transform_message
     @message.downcase.chars.map.with_index do |character, index|
       current = @character_set.find_index(character)
-      @character_set[(current.send(@operator, @shifts.shifts[index % 4])) % 27]
+      if !@character_set.include?(character)
+        character
+      else
+        @character_set[(current.send(@operator, @shifts.shifts[index % 4])) % 27]
+      end
     end.join
   end
 
