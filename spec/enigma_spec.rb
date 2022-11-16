@@ -14,8 +14,8 @@ RSpec.describe Enigma do
 
   describe '#encrypt' do
     it 'returns a hash containing an encrypted message, key, and date' do
-      expect(enigma.encrypt('test', '12345', '010122')).to eq({
-                                                                encryption: 'iigo',
+      expect(enigma.encrypt('te.st', '12345', '010122')).to eq({
+                                                                encryption: 'ii.ni',
                                                                 key: '12345',
                                                                 date: '010122'
                                                               })
@@ -29,8 +29,8 @@ RSpec.describe Enigma do
 
   describe '#decrypt' do
     it 'decrypts a message' do
-      expect(enigma.decrypt('iigo', '12345', '010122')).to eq({
-                                                                decryption: 'test',
+      expect(enigma.decrypt('ii.ni', '12345', '010122')).to eq({
+                                                                decryption: 'te.st',
                                                                 key: '12345',
                                                                 date: '010122'
                                                               })
